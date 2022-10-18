@@ -1,0 +1,38 @@
+{% macro Breadcrumbs(props) %}
+  {#
+    Breadcrumbs
+    This component is a breadcrumbs navigation.
+
+    @param {string} id The id
+    @param {array} classes List of css classes
+    @param {array} items List of items [{text: 'Home', link: '#'},...]
+
+  #}
+
+  {# HTML attributes #}
+  {% set attributes = {
+    id: props.id,
+    class: (props.classes ?? [])|merge(['breadcrumbs']),
+    'aria-label': 'Breadcrumb'
+  } %}
+
+  {# Output #}
+  <nav {{ attributes|arrayToAttributesHTML }}>
+    {% if props.items %}
+      <ol>
+        {% for item in props.items %}
+          <li>
+            {# HTML link attributes #}
+            {% set link_attributes = {
+              href: item.link,
+              title: item.text,
+              'aria-current': item.current ? 'page' : null
+            } %}
+
+            <a {{ link_attributes|arrayToAttributesHTML }}>{{ item.text }}</a>
+          </li>
+        {% endfor %}
+      </ol>
+    {% endif %}
+  </nav>
+{% endmacro %}

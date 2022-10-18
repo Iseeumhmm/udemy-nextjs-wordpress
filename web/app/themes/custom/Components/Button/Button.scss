@@ -1,0 +1,51 @@
+@use "sass:color";
+
+$button-color: #fff;
+$button-color-hover: #fff;
+$button-background: $color-primary;
+$button-background-hover: color.adjust($button-background, $lightness: 20%);
+$button-min-width: 120px;
+$button-padding: 10px;
+$button-border: none;
+$button-border-hover: none;
+$button-border-radius: 0;
+$button-text-transform: uppercase;
+$button-transition: all 0.3s;
+$button-font-weight: bold;
+
+button,
+.button {
+  background: $button-background;
+  border: $button-border;
+  border-radius: $button-border-radius;
+  color: $button-color;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: $button-font-weight;
+  min-width: $button-min-width;
+  padding: $button-padding;
+  text-align: center;
+  text-decoration: none;
+  text-transform: $button-text-transform;
+  transition: $button-transition;
+  width: auto;
+
+  &:hover {
+    background-color: $button-background-hover;
+    border: $button-border-hover;
+    color: $button-color-hover;
+    text-decoration: none;
+  }
+
+  &--variant-ghost {
+    background: transparent;
+    border: 1px solid $button-background;
+    color: $button-background;
+
+    &:hover {
+      background-color: $button-background-hover;
+      border-color: $button-background-hover;
+      color: $button-color-hover;
+    }
+  }
+}

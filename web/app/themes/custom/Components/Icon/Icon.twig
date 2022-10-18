@@ -1,0 +1,23 @@
+{% macro Icon(props) %}
+  {#
+    The Icon component.
+
+    @param {string} id The id
+    @param {array} classes List of css classes
+    @param {string} icon The icon to display
+  #}
+
+  {# HTML attributes #}
+  {% set attributes = {
+    id: props.id,
+    class: (props.classes ?? [])|merge(['icon', 'icon--' ~ props.icon])
+  } %}
+
+  {# 
+    If you want you could do something custom for one icon,
+    for example you could output a different html for a specific icon.
+  #}
+
+  {# Output #}
+  <span {{ attributes|arrayToAttributesHTML }}></span>
+{% endmacro %}

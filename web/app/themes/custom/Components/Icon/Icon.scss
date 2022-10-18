@@ -1,0 +1,68 @@
+@use "sass:math";
+
+// Arrow up white
+$icon-arrow-up-white-color: #fff;
+
+// Icon Arrow up primary color
+$icon-arrow-up-primary-color: $color-primary;
+
+// Icon close
+$icon-close-color: $color-primary;
+$icon-close-size: 20px;
+$icon-close-thickness: 3px;
+
+.icon {
+  &::after {
+    content: "";
+    display: block;
+    height: 0;
+    width: 0;
+  }
+
+  // Arrow Up white icon
+  &--arrow-up-white {
+    &::after {
+      border-color: transparent transparent $icon-arrow-up-white-color;
+      border-style: solid;
+      border-width: 0 0.5rem 0.5rem;
+    }
+  }
+
+  // Arrow Up Primary icon
+  &--arrow-up-primary {
+    &::after {
+      border-color: transparent transparent $icon-arrow-up-primary-color;
+      border-style: solid;
+      border-width: 0 0.5rem 0.5rem;
+    }
+  }
+
+  // Close icon
+  &--close {
+    display: block;
+    height: $icon-close-size;
+    position: relative;
+    width: $icon-close-size;
+
+    &::before,
+    &::after {
+      background-color: $icon-close-color;
+      content: " ";
+      height: $icon-close-size;
+      left: math.div($icon-close-size, 2);
+      position: absolute;
+      width: $icon-close-thickness;
+    }
+
+    &::before {
+      transform: rotate(45deg);
+    }
+
+    &::after {
+      transform: rotate(-45deg);
+    }
+  }
+
+  // ...
+  // Add your icons styles here
+}

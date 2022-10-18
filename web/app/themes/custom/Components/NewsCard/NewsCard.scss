@@ -1,0 +1,61 @@
+@import "@Components/Card/Card";
+
+$news-card-padding: 1em;
+$news-card-max-width: 300px;
+$news-card-title-font-size: 1.5em;
+$news-card-title-font-weight: bold;
+$news-card-image-ratio: 56%;
+$news-card-image-border-radius: 0;
+$news-card-breakpoint: "vertical-tablet";
+
+.news-card {
+  flex: 1 0 55%;
+  padding: $news-card-padding;
+  position: relative;
+
+  @include media-breakpoint-up($news-card-breakpoint) {
+    flex: 1;
+    max-width: $news-card-max-width;
+  }
+
+  &__image {
+    border-radius: $news-card-image-border-radius;
+    margin-bottom: 1em;
+    overflow: hidden;
+    padding-bottom: $news-card-image-ratio;
+    position: relative;
+  }
+
+  &__title {
+    font-size: $news-card-title-font-size;
+    font-weight: $news-card-title-font-weight;
+  }
+
+  &__description {
+    margin: 1em 0;
+  }
+
+  &__author-link {
+    position: relative;
+    z-index: 1;
+  }
+
+  &__link::after {
+    bottom: 0;
+    content: "";
+    display: block;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  img {
+    left: 0;
+    object-fit: cover;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+  }
+}

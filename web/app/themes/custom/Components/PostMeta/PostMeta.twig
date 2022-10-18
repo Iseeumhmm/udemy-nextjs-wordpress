@@ -1,0 +1,58 @@
+{% macro PostMeta(props) %}
+  {#
+        PostMeta
+        This component displays the meta for a post including an archive link, author link, and date
+
+        @param {array} classes List of css classes
+		@param {text:... , link:...} archiveLink The link for the Post archive. Defaults to general News Archive. Pass false to hide archive link
+        @param {array} author The post author to show in the meta
+        @param {bool} linkWrapsCard Avoid internal links if link is to wrap whole Card
+		@param {Date} date The date
+		@param {string} date_format Format of the date (D, M jS, g:ia)
+        @param {string} postType The post type for theming the archive link
+    #}
+
+  {% from '@Components/Link/Link.twig' import Link %}
+  {% from '@Components/Picture/Picture.twig' import Picture %}
+
+  {# Parameters #}
+  {% set date_format = props.date_format ?? 'D, M jS, g:ia' %}
+
+  {# HTML attributes #}
+  {% set attributes = {
+    id: props.id ?? null,
+    class: (props.classes ?? [])|merge(['post-meta'])
+  } %}
+
+  <div {{ attributes|arrayToAttributesHTML }}>
+    {# Post author info #}
+    {% if props.author %}
+      <span class="post-meta__author">
+        {{
+          Picture({
+            sources: [
+              {
+                url: props.author.avatar.src
+              }
+            ],
+            alt: props.author.name
+          })
+        }}
+
+        {{
+          Link({
+            title: props.author.name,
+            link: props.author.link,
+            content: props.author.name
+          })
+        }}
+      </span>
+    {% endif %}
+    {# Post date info #}
+    {% if props.date %}
+      <span class="post-meta__date">
+        <time datetime="{{ props.date|date('Y-m-d\\Th:i:s') }}" title="{{ props.date|date(date_format) }}">{{ props.date|date(date_format) }}</time>
+      </span>
+    {% endif %}
+  </div>
+{% endmacro %}

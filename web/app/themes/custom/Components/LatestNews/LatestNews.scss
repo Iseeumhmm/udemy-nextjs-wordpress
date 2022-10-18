@@ -1,0 +1,23 @@
+$latest-news-background: none;
+$latest-news-margin: 0;
+$latest-news-padding: 0;
+$latest-news-cards-margin: 0 -1em;
+
+.latest-news {
+  @import "@Components/NewsCard/NewsCard";
+
+  background: $latest-news-background;
+  margin: $latest-news-margin;
+  overflow: hidden;
+  padding: $latest-news-padding;
+
+  &__cards {
+    display: flex;
+    flex-wrap: wrap;
+    margin: $latest-news-cards-margin;
+  }
+
+  .news-card {
+    margin: 0 1em;
+  }
+}

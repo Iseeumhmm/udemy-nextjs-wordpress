@@ -1,0 +1,27 @@
+$social-share-color: $color-primary;
+$social-share-color-hover: #fff;
+$social-share-background: none;
+$social-share-background-hover: $color-primary;
+$social-share-border-radius: 0;
+$social-share-width: 40px;
+$social-share-transition: all 0.3s;
+
+.social-share {
+  * {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  svg {
+    background: $social-share-background;
+    border-radius: $social-share-border-radius;
+    fill: $social-share-color;
+    transition: $social-share-transition;
+    width: $social-share-width;
+
+    &:hover {
+      background: $social-share-background;
+      fill: $social-share-color-hover;
+    }
+  }
+}

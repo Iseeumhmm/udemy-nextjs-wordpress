@@ -1,0 +1,11 @@
+@import "@Components/NewsCard/NewsCard";
+@import "@Components/ClassicPagination/ClassicPagination";
+@import "@Components/LoadMorePagination/LoadMorePagination";
+
+$posts-loop-card-margin: 1rem;
+
+.posts-loop {
+  .card {
+    margin: $posts-loop-card-margin;
+  }
+}

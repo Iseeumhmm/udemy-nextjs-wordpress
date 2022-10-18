@@ -1,0 +1,45 @@
+// This is the theme's global declarations
+
+// Naming convention:
+///
+// Try to stick to this convention, or if you need you can decide on a better suited convention,
+// but then stick to it.
+///
+// component-property-variant-state-mode
+///
+// component: The component name
+// property: The css property
+// variant: primary/secondary/ghost/...
+// state: default/hover/active/focuse/disabled/error/...
+// mode: on-light/on-dark
+///
+// ex: $card-color, $card-color-hover, $card-color-on-dark, $card-color-hover-on-dark, $card-color-secondary-on-dark
+///
+// Use only the terms you need, if you don't need state but you need modifier then just skip state.
+
+// Breakpoints
+$breakpoints: (
+  "small-mobile": 400px,
+  "mobile": 600px,
+  "vertical-tablet": 768px,
+  "horizontal-tablet": 1024px,
+  "small-desktop": 1280px,
+  "medium-desktop": 1600px,
+  "large-desktop": 1920px
+);
+
+// Colors
+$color-primary: #000;
+$color-secondary: #ddd;
+$color-accent: #f00;
+
+// Typography
+$typography-font-family-primary: -apple-system, blinkmacsystemfont, "Segoe UI", roboto, helvetica, arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+$typography-heading-margin: 1em 0 0.5em 0;
+$typography-heading-1-font-size: 2rem;
+$typography-heading-2-font-size: 1.6rem;
+$typography-heading-3-font-size: 1.4rem;
+$typography-heading-4-font-size: 1.3rem;
+$typography-heading-5-font-size: 1.2rem;
+$typography-heading-6-font-size: 1rem;
+$typography-paragraphs-margin: 1em 0 0.5em 0;

@@ -1,0 +1,108 @@
+{#
+      ContentSection
+      This component is a content section.
+
+      @param {string} id The id
+      @param {array} classes List of css classes
+      @param {array} variants List of variants
+      @param {string} layout The layout, 1 column or 2
+      @param {string} title The Title
+      @param {string} title_position The position of the title
+      @param {string} title_alignment The alignment of the title, left|center|right
+      @param {string} content The content
+      @param {string} image The image
+      @param {string} text_position The text position, left or right
+      @param {string} background_image The background image
+
+  #}
+
+{# Parameters #}
+{% set layout = props.layout ?? 'one_column' %}
+
+{% set section_main_title = props.title %}
+
+{% if props.image %}
+  {% set layout = 'two_columns' %}
+{% endif %}
+
+{% if layout == 'two_columns' %}
+  {% set section_main_title = null %}
+  {% if props.title_position == 'section_header' %}
+    {% set classes = (props.classes ?? [])|merge(['text-content-align-top']) %}
+  {% endif %}
+{% endif %}
+
+{% if props.text_position == 'right' %}
+  {% set classes = (props.classes ?? [])|merge(['content-section--text-right']) %}
+{% endif %}
+
+{# Output #}
+{% from '@Components/Section/Section.twig' import Section %}
+
+{{
+  Section({
+    id: id ?? function('apply_filters', 'sanitize_title', props.title),
+    classes: (classes ?? [])|merge(['content-section'])|merge(props.variants ?? []),
+    title: section_main_title,
+    title_alignment: props.title_alignment,
+    background_image: props.background_image,
+    content: _self.sectionContent({
+      title: props.title,
+      title_position: props.title_position,
+      layout: layout,
+      image: Image(props.image),
+      content: props.content,
+      background: Image(props.background)
+    })
+  })
+}}
+
+{% macro sectionContent(props) %}
+  {% from '@Components/Picture/Picture.twig' import Picture %}
+
+  {% if props.layout == 'two_columns' and props.title_position == 'section_header' and props.title %}
+    <h2 class="section__title">
+      {{ props.title }}
+    </h2>
+  {% endif %}
+
+  <div class="content-section__column-wrapper">
+    <div class="content-section__column">
+      <div class="content-section__content">
+        {% if props.layout == 'two_columns' and props.title_position == 'over_text_content' and props.title %}
+          <h2>
+            {{ props.title }}
+          </h2>
+        {% endif %}
+
+        {{ props.content }}
+      </div>
+    </div>
+    {% if props.layout == 'two_columns' %}
+      {# HTML attributes #}
+      {% set attributes = {
+        class: ['content-section__column']|merge(props.image ? ['content-section__image'] : [])
+      } %}
+      <div {{ attributes|arrayToAttributesHTML }}>
+        {% if props.image %}
+          {{
+            Picture({
+              sources: [
+                {
+                  url: props.image.src('large')
+                },
+                {
+                  media: '(min-width: 768px)',
+                  url: props.image.src('medium')
+                }
+              ],
+              width: props.image.width,
+              height: props.image.height,
+              alt: props.image.alt
+            })
+          }}
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+{% endmacro %}

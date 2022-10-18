@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    // This is required for Autocompletion and Go To Definition features
+    "paths": {
+      "@Blocks/*": ["./web/app/themes/%THEME_NAME%/Blocks/*"],
+      "@Components/*": ["./web/app/themes/%THEME_NAME%/Components/*"],
+      "@Templates/*": ["./web/app/themes/%THEME_NAME%/Templates/*"],
+      "@Utils/*": ["./web/app/themes/%THEME_NAME%/Utils/*"],
+      "@Assets/*": ["./web/app/themes/%THEME_NAME%/Assets/*"],
+      "@Vendors/*": ["./web/app/themes/%THEME_NAME%/Vendors/*"]
+    }
+  },
+  "exclude": [".git", "**/node_modules/*", "./vendor", "./web/app/plugins", ".web/wp"]
+}

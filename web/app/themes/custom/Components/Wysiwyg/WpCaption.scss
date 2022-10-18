@@ -1,0 +1,12 @@
+$wp-caption-figcaption-border-left: 5px solid $color-secondary;
+$wp-caption-figcaption-padding-left: 0.5rem;
+
+.wp-caption {
+  margin-left: 0;
+  margin-right: 0;
+
+  figcaption {
+    border-left: $wp-caption-figcaption-border-left;
+    padding-left: $wp-caption-figcaption-padding-left;
+  }
+}

@@ -1,0 +1,35 @@
+{% macro StickyFooter(props) %}
+  {#
+        StickyFooter
+        This component is a sticky footer.
+
+        @param {string} id The id
+        @param {array} classes List of css classes
+        @param {string} content The content wrapped in the sticky bar
+    #}
+
+  {% set attributes = {
+    id: props.id,
+    class: (props.classes ?? [])|merge(['sticky-footer'])
+  } %}
+
+  {# Output #}
+  {% from '@Components/Button/Button.twig' import Button %}
+  {% from '@Components/Icon/Icon.twig' import Icon %}
+
+  <div {{ attributes|arrayToAttributesHTML }}>
+    <div class="sticky-footer__content">
+      {{ props.content|raw }}
+
+      {{
+        Button({
+          classes: ['sticky-footer__close-button'],
+          text: 'Close'
+            ~ Icon({
+              icon: 'close'
+            })
+        })
+      }}
+    </div>
+  </div>
+{% endmacro %}

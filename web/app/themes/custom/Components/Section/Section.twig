@@ -1,0 +1,39 @@
+{% macro Section(props) %}
+  {#
+        Section
+        This component is a section.
+
+        @param {string} id The id of the menu
+        @param {array} classes List of css classes
+        @param {string} content The content wrapped in the section
+        @param {string} title The title
+        @param {string} title_alignment The alignment of the title, left|center|right
+        @param {Timber\Image} background_image The background image
+    #}
+
+  {# Parameters #}
+  {% set id = props.id ?? function('apply_filters', 'sanitize_title', props.title) %}
+
+  {# HTML attributes #}
+  {% set attributes = {
+    id: id,
+    class: (props.classes ?? [])|merge(['section'])|merge([props.title_alignment ? 'section__title--' ~ props.title_alignment : null]),
+    style: props.background_image ? 'background: url(' ~ props.background_image.url ~ ') no-repeat center/cover;' : ''
+  } %}
+
+  <section {{ attributes|arrayToAttributesHTML }}>
+    {% if props.background_image %}
+      <div class="section__background-color"></div>
+    {% endif %}
+
+    <div class="%CSS_PREFIX%main-wrapper">
+      {% if props.title %}
+        <h2 class="section__title">
+          {{ props.title }}
+        </h2>
+      {% endif %}
+
+      {{ props.content|raw }}
+    </div>
+  </section>
+{% endmacro %}

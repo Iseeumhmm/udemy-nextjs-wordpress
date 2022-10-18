@@ -1,0 +1,13 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "stylelint.vscode-stylelint",
+    "ikappas.phpcs",
+    "davidanson.vscode-markdownlint",
+    "wk-j.save-and-run",
+    "whatwedo.twig",
+    "xdebug.php-debug",
+    "ms-vscode-remote.remote-containers"
+  ]
+}

@@ -1,0 +1,22 @@
+@import "@Vendors/glider-js/glider.css";
+
+$slider-active-slide-color: $color-primary;
+
+.slider {
+  position: relative;
+
+  .glider {
+    overflow: hidden;
+  }
+
+  .glider-next,
+  .glider-prev {
+    background: none;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .glider-dot.active {
+    background: $slider-active-slide-color;
+  }
+}

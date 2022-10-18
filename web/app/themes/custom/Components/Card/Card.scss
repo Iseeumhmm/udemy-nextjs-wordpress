@@ -1,0 +1,20 @@
+$card-background: #fff;
+$card-padding: 1em;
+$card-border: 1px solid #ddd;
+$card-border-radius: 0;
+$card-background-hover: #fff;
+$card-border-hover: 1px solid $color-accent;
+$card-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+
+.card {
+  background-color: $card-background;
+  border: $card-border;
+  border-radius: $card-border-radius;
+  box-shadow: $card-shadow;
+  padding: $card-padding;
+
+  &:hover {
+    background-color: $card-background-hover;
+    border: $card-border-hover;
+  }
+}

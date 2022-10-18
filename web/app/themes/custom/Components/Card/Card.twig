@@ -1,0 +1,21 @@
+{% macro Card(props) %}
+  {#
+        Card
+        This component is a card.
+
+        @param {string} id The id of the menu
+        @param {array} classes List of css classes
+        @param {string} content The content wrapped in the card
+    #}
+
+  {# HTML attributes of the card #}
+  {% set attributes = {
+    id: props.id,
+    class: (props.classes ?? [])|merge(['card'])
+  } %}
+
+  {# Output #}
+  <div {{ attributes|arrayToAttributesHTML }}>
+    {{ props.content|raw }}
+  </div>
+{% endmacro %}

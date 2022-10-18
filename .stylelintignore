@@ -1,0 +1,10 @@
+# Ignore Sass cache and (Sass, Css) generated files.
+**/.sass-cache/**/*
+**/css/style.css.map
+**/node_modules/**/*
+vendor/**/*
+Vendors
+public
+*.*
+!*.css
+!*.scss

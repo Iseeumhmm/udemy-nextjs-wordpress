@@ -1,0 +1,91 @@
+##-----------------------------------------------------------------------------
+##
+## Site specific configuration.
+##
+## This file contains the configuration options that will be set for this site.
+##
+## Overrides can be included in this configuration file as well. The following
+## list defines the hierarchy of the configuration files:
+##
+##  - HATCHERY_ROOT/config/site/global.yml
+##  - HATCHERY_ROOT/config/site/wordpress.yml
+##  - HATCHERY_ROOT/custom/config/local.yml
+##  - SITE_ROOT/.hatchery.yml (you are here)
+##  - SITE_ROOT/.hatchery.local.yml
+##
+## This file contains all of the values that can be set and/or overridden at
+## the site level.
+##
+##-----------------------------------------------------------------------------
+
+##-----------------------------------------------------------------------------
+## Configuration
+##-----------------------------------------------------------------------------
+
+# Name (Required)
+#  This controls a wide variety of variables for the site, including the db
+#  values (user, pass, db name) as well as the domain name and, under the hood,
+#  all of the docker container names and networks.
+name: nextjs-wp
+
+# Type (Required)
+#  The type of site to set up locally. Possible values are:
+#    - drupal
+#    - wordpress
+type: wordpress
+
+# Version (Required)
+#  The version of hatchery.
+version: 2
+
+# Composer
+#  Contains a list of composer variables that control how composer is user. The
+#  version must be a fully qualified version (2.3.7 for example) rather than
+#  just a major version (2 for example).
+composer:
+  version: 2.3.7
+
+# Aquarium (Required)
+#  This section defines the production environment that this site uses.
+aquarium:
+  # Aquarium Setup (Required)
+  #  This variable defines whether this site has been set up in aquarium or not.
+  #  If the site has been set up in aquarium, asset and database syncing will
+  #  be enabled. Settings this to false will also use the old deployer folder
+  #  structure.
+  setup: true
+
+  # Aquarium Importing
+  #  This section defines the S3 variables for asset syncing.
+  importing:
+
+    # Aquarium Importing - Folder
+    #  This variable defines the folder in S3 where the assets and db are
+    #  stored.
+    #  Below is an example, so remove this comment and get the correct variables from S3
+    # folder: sportsbetting-net-in-rebuild
+
+    # Aquarium Importing - File
+    #  This variable defines the file name within the S3 folder above for the
+    #  db syncing.
+    #  Below is an example, so remove this comment and get the correct variables from S3
+    # file: sportsbetting-net-in-rebuild
+
+    # Aquarium Importing - Domain
+    #  This variable defines the domain which is used to search the db when it
+    #  synced. This is a wordpress only variables.
+    #  Below is an example, so remove this comment and get the correct live URL
+    # domain: sportsbetting.net.in
+
+# Pre-Commit
+#  This section defines which types of pre-commit functionality to add to the
+#  git repo.
+pre-commit:
+  # Linting
+  #  This section defines which linting will be executed in the pre-commit hook.
+  linting:
+    - php
+    - css
+    - js
+    - twig
+    - path

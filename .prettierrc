@@ -1,0 +1,9 @@
+{
+  "printWidth": 150,
+  "tabWidth": 2,
+  "twigPrintWidth": 150,
+  "twigAlwaysBreakObjects": true,
+  "twigFollowOfficialCodingStandards": true,
+  "plugins": ["./node_modules/prettier-plugin-twig-melody"],
+  "twigMelodyPlugins": ["./web/app/themes/%THEME_NAME%/TwigConfig/TwigPlugins/ArrayExpression"]
+}

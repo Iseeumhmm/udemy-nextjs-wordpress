@@ -1,0 +1,21 @@
+{% macro BackToTop(props) %}
+  {#
+    The Back To Top button
+    This button allows to scroll back to the top of the page.
+  #}
+
+  {% from '@Components/Button/Button.twig' import Button %}
+  {% from '@Components/Icon/Icon.twig' import Icon %}
+
+  {# Output #}
+  {# For accessibility it is recommended to have a descriptive text in the button #}
+  {{
+    Button({
+      classes: ['back-to-top', 'button'],
+      text: 'Back to top'
+        ~ Icon({
+          icon: 'arrow-up-white'
+        })
+    })
+  }}
+{% endmacro %}

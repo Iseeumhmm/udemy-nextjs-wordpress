@@ -1,0 +1,7 @@
+# Excluding irrelevant components when Building Docker image
+
+.git
+.gitignore
+Dockerfile
+*.md
+

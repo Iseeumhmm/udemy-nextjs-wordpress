@@ -1,0 +1,59 @@
+$search-form-background: #fff;
+$search-form-padding: 1em;
+
+.search {
+  @import "@Components/TextInput/TextInput";
+
+  form {
+    display: flex;
+
+    @include media-breakpoint-up("horizontal-tablet") {
+      background: $search-form-background;
+      display: none;
+      padding: $search-form-padding;
+      position: absolute;
+      transform: translateX(calc(-100% + 50px));
+      z-index: 9;
+    }
+
+    .search__input {
+      flex: 1;
+    }
+
+    .search__button {
+      flex: 0;
+    }
+  }
+
+  &--open {
+    form {
+      display: flex;
+    }
+  }
+
+  &__icon {
+    @include media-breakpoint-up("horizontal-tablet") {
+      cursor: pointer;
+
+      &::before {
+        background: url("~@Assets/Images/search-icon.svg") no-repeat scroll center;
+        content: "";
+        display: block;
+        height: 50px;
+        width: 50px;
+      }
+    }
+  }
+
+  &--open &__icon {
+    background: #fff;
+  }
+
+  &--on-the-right {
+    form {
+      @include media-breakpoint-up("horizontal-tablet") {
+        transform: translateX(0);
+      }
+    }
+  }
+}

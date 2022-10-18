@@ -1,0 +1,252 @@
+{
+  "key": "group_contentsection",
+  "title": "Section: Simple Content",
+  "fields": [
+    {
+      "key": "field_5e1f3410f8320",
+      "label": "Layout",
+      "name": "layout",
+      "type": "radio",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": [
+        [
+          {
+            "field": "field_5e1f26a8f831e",
+            "operator": "==empty"
+          }
+        ]
+      ],
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "choices": {
+        "one_column": "1 column",
+        "two_columns": "2 columns"
+      },
+      "allow_null": 0,
+      "other_choice": 0,
+      "default_value": "",
+      "layout": "vertical",
+      "return_format": "value",
+      "save_other_choice": 0
+    },
+    {
+      "key": "field_5c9cb79dc19ea",
+      "label": "Title",
+      "name": "title",
+      "type": "text",
+      "instructions": "",
+      "required": 1,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "",
+      "prepend": "",
+      "append": "",
+      "maxlength": ""
+    },
+    {
+      "key": "field_5e8352d2f2440",
+      "label": "Title Position",
+      "name": "title_position",
+      "type": "select",
+      "instructions": "When using an image and content, use this value to specify whether the title should: a) align at the top of the section, as a normal header title, or b) align directly above the text content, as a part of that column.",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "choices": {
+        "section_header": "Section Header",
+        "over_text_content": "Over Text Content"
+      },
+      "default_value": "section_header",
+      "allow_null": 0,
+      "multiple": 0,
+      "ui": 0,
+      "return_format": "value",
+      "ajax": 0,
+      "placeholder": ""
+    },
+    {
+      "key": "field_5e78f86f16a25",
+      "label": "Title alignment",
+      "name": "title_alignment",
+      "type": "radio",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "choices": {
+        "left": "Left",
+        "center": "Center",
+        "right": "Right"
+      },
+      "allow_null": 0,
+      "other_choice": 0,
+      "default_value": "",
+      "layout": "horizontal",
+      "return_format": "value",
+      "save_other_choice": 0
+    },
+    {
+      "key": "field_5c9cb7a3c19eb",
+      "label": "Content",
+      "name": "content",
+      "type": "wysiwyg",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "tabs": "all",
+      "toolbar": "full",
+      "media_upload": 1,
+      "delay": 1
+    },
+    {
+      "key": "field_5e1f26a8f831e",
+      "label": "Image",
+      "name": "image",
+      "type": "image",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "return_format": "id",
+      "preview_size": "medium",
+      "library": "all",
+      "min_width": "",
+      "min_height": "",
+      "min_size": "",
+      "max_width": "",
+      "max_height": "",
+      "max_size": "",
+      "mime_types": ""
+    },
+    {
+      "key": "field_5e1f26ccf831f",
+      "label": "Text position",
+      "name": "text_position",
+      "type": "radio",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": [
+        [
+          {
+            "field": "field_5e1f26a8f831e",
+            "operator": "!=empty"
+          }
+        ],
+        [
+          {
+            "field": "field_5e1f3410f8320",
+            "operator": "==",
+            "value": "two_columns"
+          }
+        ]
+      ],
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "choices": {
+        "left": "Left",
+        "right": "Right"
+      },
+      "allow_null": 0,
+      "other_choice": 0,
+      "default_value": "",
+      "layout": "vertical",
+      "return_format": "value",
+      "save_other_choice": 0
+    },
+    {
+      "key": "field_5e5d3305cc5d5",
+      "label": "Background Image",
+      "name": "background_image",
+      "type": "image",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "return_format": "array",
+      "preview_size": "medium",
+      "library": "all",
+      "min_width": "",
+      "min_height": "",
+      "min_size": "",
+      "max_width": "",
+      "max_height": "",
+      "max_size": "",
+      "mime_types": ""
+    },
+    {
+      "key": "field_5e1f1b755a002",
+      "label": "Variants",
+      "name": "variants",
+      "type": "checkbox",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "choices": {
+        "alternate": "Alternate"
+      },
+      "allow_custom": 0,
+      "default_value": [],
+      "layout": "vertical",
+      "toggle": 0,
+      "return_format": "value",
+      "save_custom": 0
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "widget",
+        "operator": "==",
+        "value": "rss"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "seamless",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": "",
+  "active": true,
+  "description": "",
+  "modified": 1650371557
+}

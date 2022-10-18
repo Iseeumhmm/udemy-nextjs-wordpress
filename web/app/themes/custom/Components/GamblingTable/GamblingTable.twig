@@ -1,0 +1,93 @@
+{% macro GamblingTable(props) %}
+  {# HTML attributes #}
+  {% set attributes = {
+    id: props.id,
+    class: (props.classes ?? [])|merge(['gambling-table'])
+  } %}
+
+  <div {{ attributes|arrayToAttributesHTML }}>
+    {% for book in props.tables[0].books %}
+      {% set sort_order = sort_order + 1 %}
+      <div class="gambling-table__container gambling-table--row-{{ loop.index }}">
+        <div class="gambling-operator__container">
+          {# Rank #}
+          <div class="gambling-operator__detail gambling-operator__detail--rank">
+            <div>
+              {{ sort_order }}
+            </div>
+          </div>
+
+          {# Logo #}
+          <div class="gambling-operator__detail gambling-operator__detail--logo">
+            <a href="{{ book.playNowUrl }}" target="_blank" rel="nofollow">
+              <img src="{{ book.attachment[0] }}" alt="{{ book.gamblingSiteName }} Logo" />
+            </a>
+          </div>
+
+          {# Bonus #}
+          <div class="gambling-operator__detail gambling-operator__detail-bonus">
+            <div class="gambling-operator-bonus-text">
+              <p class="bonus-bold">
+                {{ book.bonus[0] }}
+              </p>
+              <p>
+                {{ book.bonus[1] }}
+              </p>
+            </div>
+          </div>
+
+          
+          <div class="gambling-operator__detail gambling-operator__detail-rating-payout">
+            {# Rating #}
+            {% if book.bonus[2] %}
+              <div class="gambling-operator__star-rating-container">
+                {% set stars_width = 0 %}
+                {% if book.bonus[2] %}
+                  {% set stars_width = book.bonus[2]|formatStarRating %}
+                {% endif %}
+                <div class="gambling-operator__star-rating gambling-operator__star-rating--overlay" style="width: {{ stars_width }}"></div>
+                <div class="gambling-operator__star-rating gambling-operator__star-rating--underlay"></div>
+              </div>
+            {% endif %}
+
+            {# Payout #}
+            <div class="cta-payout">
+              <p>
+                {{ book.payout[2] }}
+              </p>
+            </div>
+          </div>
+
+          {# Payement #}
+          <div class="gambling-operator__detail gambling-operator__detail--payment">
+            <div class="gambling-operator-payment-logos">
+              {% for item, value in book.payment %}
+                {% if value %}
+                  <img src="/app/plugins/gambling-ads/images/payment_{{ item }}.png" class="gambling-operator-payment-logo" alt="{{ item }}" />
+                {% endif %}
+              {% endfor %}
+            </div>
+            {% if book.morePaymentsCopy %}
+              <div class="more-payment-options">
+                {{ book.morePaymentsCopy }}
+              </div>
+            {% endif %}
+          </div>
+
+          {# Review | Play now#}
+          <div class="gambling-operator__detail gambling-operator__detail--review-play-now">
+            <div>
+              <p>
+                <a href="{{ book.playNowUrl }}" class="play-now-button" target="_blank" rel="nofollow">{{ playNowCopy }}</a>
+              </p>
+              <p class="cta-text-center">
+                <a href="{{ book.reviewUrl }}" class="cta-read-review">{{ reviewCopy }}</a>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="gambling-operator-background"></div>
+      </div>
+    {% endfor %}
+  </div>
+{% endmacro %}

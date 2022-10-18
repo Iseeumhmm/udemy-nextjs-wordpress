@@ -1,0 +1,22 @@
+$back-to-top-color: #fff;
+
+.back-to-top {
+  bottom: 1rem;
+  position: fixed;
+  right: 1rem;
+  z-index: 9;
+
+  // Overriding Button
+  &.button {
+    display: none; // Hidden by default
+    font-size: 0;
+    min-width: 0;
+  }
+
+  // Only show the button if the back-to-top--show class is applied
+  &--show {
+    &.button {
+      display: flex;
+    }
+  }
+}

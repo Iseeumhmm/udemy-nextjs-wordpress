@@ -1,0 +1,19 @@
+$text-input-padding: 10px;
+$text-input-min-width: 120px;
+$text-input-border: 1px solid #e3e3e3;
+$text-input-border-radius: 0;
+
+input[type="text"],
+input[type="number"],
+input[type="password"],
+input[type="date"],
+input[type="tel"],
+input[type="url"] {
+  border: $text-input-border;
+  border-radius: $text-input-border-radius;
+  box-sizing: border-box;
+  display: inline-block;
+  min-width: $text-input-min-width;
+  padding: $text-input-padding;
+  width: auto;
+}

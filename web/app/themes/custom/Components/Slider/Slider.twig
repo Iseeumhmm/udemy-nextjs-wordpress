@@ -1,0 +1,55 @@
+{% macro Slider(props) %}
+  {#
+        Slider
+        This component is a slider.
+
+        @param {string} id The id of the table
+        @param {array} classes List of css classes
+        @param {array} slides List of slides [{content:""},...]
+        
+    #}
+
+  {# Parameters #}
+  {% set prev_next = props.prev_next ?? true %}
+  {% set dots = props.dots ?? true %}
+
+  {% set attributes = {
+    id: props.id,
+    class: (props.classes ?? [])|merge(['slider']),
+    'data-slidesToShow': props.slides_to_show ?? 1
+  } %}
+
+  {# Output #}
+  {% from '@Components/Button/Button.twig' import Button %}
+
+  <div {{ attributes|arrayToAttributesHTML }}>
+    <div class="glider">
+      {% for slide in props.slides %}
+        <div>
+          {{ slide.content|raw }}
+        </div>
+      {% endfor %}
+    </div>
+    {% if prev_next %}
+      {{
+        Button({
+          role: 'button',
+          'aria-label': 'Previous',
+          classes: ['glider-prev'],
+          text: '«'
+        })
+      }}
+      {{
+        Button({
+          role: 'button',
+          'aria-label': 'Next',
+          classes: ['glider-next'],
+          text: '»'
+        })
+      }}
+    {% endif %}
+    {% if dots %}
+      <div role="tablist" class="dots"></div>
+    {% endif %}
+  </div>
+{% endmacro %}

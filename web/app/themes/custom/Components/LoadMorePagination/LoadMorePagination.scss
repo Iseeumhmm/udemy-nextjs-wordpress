@@ -1,0 +1,78 @@
+$loadmore-pagination-color: $color-primary;
+$loadmore-pagination-background: #fff;
+$loadmore-pagination-border: 1px solid #ddd;
+$loadmore-pagination-border-radius: 4px;
+$loadmore-pagination-transition: all 0.3s;
+$loadmore-pagination-margin: 1em 0;
+$loadmore-pagination-item-color-current: #fff;
+$loadmore-pagination-item-background-current: $color-primary;
+$loadmore-pagination-item-color-hover: #fff;
+$loadmore-pagination-item-background-hover: $color-primary;
+$loadmore-pagination-font-size: 0.875rem;
+
+.loadmore-pagination {
+  margin: $loadmore-pagination-margin;
+
+  ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+  }
+
+  li {
+    background-color: inherit;
+    border: $loadmore-pagination-border;
+    border-right: 0;
+    font-size: $loadmore-pagination-font-size;
+    height: 100%;
+    line-height: 2.3em;
+    opacity: 1;
+    pointer-events: all;
+    text-align: center;
+    width: 34px;
+
+    a {
+      color: $loadmore-pagination-color;
+      display: block;
+      text-decoration: none;
+
+      &:not([href]) {
+        color: $loadmore-pagination-color;
+        opacity: 0.5;
+        pointer-events: none;
+      }
+
+      &.current {
+        background-color: $loadmore-pagination-item-background-current;
+        color: $loadmore-pagination-item-color-current;
+        opacity: 1;
+        pointer-events: all;
+      }
+    }
+
+    &:first-child a {
+      border-radius: $loadmore-pagination-border-radius 0 0 $loadmore-pagination-border-radius;
+    }
+
+    &:last-child a {
+      border-radius: 0 $loadmore-pagination-border-radius $loadmore-pagination-border-radius 0;
+    }
+
+    a:not(.spacer):hover {
+      background-color: $loadmore-pagination-item-background-hover;
+      color: $loadmore-pagination-item-color-hover;
+      opacity: 0.9;
+    }
+
+    &:first-child {
+      border-radius: $loadmore-pagination-border-radius 0 0 $loadmore-pagination-border-radius;
+      padding: 0;
+    }
+
+    &:last-child {
+      border-radius: 0 $loadmore-pagination-border-radius $loadmore-pagination-border-radius 0;
+      border-right: $loadmore-pagination-border;
+      padding: 0;
+    }
+  }
+}

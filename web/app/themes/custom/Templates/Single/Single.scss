@@ -1,0 +1,12 @@
+@import "@Utils/Sass/Mixins";
+@import "@Utils/Sass/Functions";
+@import "@Components/PostMeta/PostMeta";
+@import "@Components/SocialShare/SocialShare";
+@import "@Components/AuthorCard/AuthorCard";
+@import "@Components/LatestNews/LatestNews";
+@import "@Components/StickyFooter/StickyFooter";
+
+.post__featured-image img {
+  height: auto;
+  max-width: 100%;
+}

@@ -1,0 +1,69 @@
+{% macro PostsLoop(props) %}
+  {% set posts = props.posts ?? [] %}
+  {% set wrap_cards = props.wrap_cards ?? true %}
+
+  {% from '@Components/NewsCard/NewsCard.twig' import NewsCard %}
+
+  {% if wrap_cards %}
+  <div class="posts-loop">
+    <div class="cards-wrapper">
+  {% endif %}
+
+      {% for post in posts %}
+        {% if props.post_preview_length %}
+          {% set text_preview = post.preview.length(props.post_preview_length).read_more('') %}
+        {% else %}
+          {% set text_preview = post.preview.read_more('') %}
+        {% endif %}
+        {{
+          NewsCard({
+            title: post.title,
+            titleHeading: 'h2',
+            link: post.link,
+            thumbnail: post.thumbnail,
+            text: text_preview,
+            author: post.author,
+            date: post.date
+          })
+        }}
+      {% endfor %}
+
+    {% if wrap_cards %}
+    </div>
+    {% endif %}
+
+    {% set next = posts.pagination.next
+      ? posts.pagination.next|merge({
+        text: 'Load More'
+      })
+      : null
+    %}
+    {% set prev = posts.pagination.prev ?? null %}
+
+    {% if props.pagination_is_load_more %}
+      {% from '@Components/LoadMorePagination/LoadMorePagination.twig' import LoadMorePagination %}
+
+      {{
+        LoadMorePagination({
+          next: next,
+          targeted_page: props.targeted_page ?? 1,
+          current_page: props.current_page ?? 1
+        })
+      }}
+    {% else %}
+      {% from '@Components/ClassicPagination/ClassicPagination.twig' import ClassicPagination %}
+      
+      {{
+        ClassicPagination({
+          pages: posts.pagination.pages,
+          next: next,
+          prev: prev
+        })
+      }}
+    {% endif %}
+
+  {% if wrap_cards %}
+  </div>
+  {% endif %}
+
+{% endmacro %}

@@ -1,0 +1,71 @@
+{
+  // PHP standard
+  "phpcs.standard": "PSR12",
+  // Where is PHP Code Sniffer located
+  "phpcs.executablePath": "./vendor/bin/phpcs",
+  // Activate PHP Code Sniffer, this will find errors in PHP according to PSR12
+  "phpcs.enable": true,
+  // PHPCS to ignore third party packages
+  "phpcs.ignorePatterns": ["./vendor/*", "./node_modules/*", "./web/app/plugins/*"],
+  // On save run PHP Code Beautifier and Fixer, it will fix errors found by PHPCS
+  "saveAndRun": {
+    "commands": [
+      {
+        "match": "\\.php$",
+        "cmd": "./vendor/bin/phpcbf ${relativeFile} --standard=PSR12",
+        "silent": true
+      }
+    ]
+  },
+  // Running Stylelint and ESLint on save
+  "editor.codeActionsOnSave": {
+    "source.fixAll.stylelint": true,
+    "source.fixAll.eslint": true
+  },
+  // Enable Stylelint
+  "stylelint.enable": true,
+  // ESLint to validate only javascript
+  "eslint.validate": ["javascript"],
+  // Always show the ESlint status bar item
+  "eslint.alwaysShowStatus": true,
+  // Specifying ESLint configuration file
+  "eslint.options": { "configFile": ".eslintrc.js" },
+  // Activating Prettier globally
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  // Deactivating Prettier for JS
+  "[javascript]": {
+    "editor.defaultFormatter": null
+  },
+  // Deactivating Prettier for SCSS
+  "[scss]": {
+    "editor.defaultFormatter": null,
+    "editor.formatOnSave": false
+  },
+  // Deactivating Prettier for CSS
+  "[css]": {
+    "editor.defaultFormatter": null,
+    "editor.formatOnSave": false
+  },
+  // Deactivating Prettier for Twig
+  "[twig]": {
+    "editor.defaultFormatter": null
+  },
+  // Disable VSCode JS validation
+  "javascript.validate.enable": false,
+  // Disable VSCode CSS validation
+  "css.validate": false,
+  // Disable VSCode SCSS validation
+  "scss.validate": false,
+  // Ignores the warning when there are too many changes in a repository
+  "git.ignoreLimitWarning": true,
+  // Format files on save.
+  "editor.formatOnSave": true,
+  // Stylelint no longer has scss in the defaults...
+  "stylelint.validate": ["css", "less", "postcss", "scss"],
+  // Stylelint no longer has scss in the defaults...
+  "stylelint.snippet": ["css", "less", "postcss", "scss"],
+  // Stylelint no longer has scss in the defaults...
+  "stylelint.customSyntax": "postcss-scss",
+  // Specifying Stylelint configuration file
+  "stylelint.configFile": ".stylelintrc"
+}

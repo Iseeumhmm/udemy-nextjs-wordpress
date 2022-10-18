@@ -1,0 +1,31 @@
+$breadcrumbs-color: inherit;
+$breadcrumbs-background: none;
+$breadcrumbs-separator-color: #aaa;
+$breadcrumbs-margin: 1em 0;
+$breadcrumbs-padding: 0;
+$breadcrumbs-items-margin: 0;
+$breadcrumbs-items-padding: 0;
+$breadcrumbs-separator: "-";
+
+.breadcrumbs {
+  background: $breadcrumbs-background;
+  color: $breadcrumbs-color;
+  margin: $breadcrumbs-margin;
+  padding: $breadcrumbs-padding;
+
+  ol {
+    padding: 0;
+
+    li {
+      display: inline-block;
+      margin: $breadcrumbs-items-margin;
+      padding: $breadcrumbs-items-padding;
+      vertical-align: middle;
+
+      &:not(:last-child)::after {
+        color: $breadcrumbs-separator-color;
+        content: $breadcrumbs-separator;
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{% macro TextInput(props) %}
+  {#
+        Text Input
+        This component is a text input.
+
+        @param {string} id The id image
+        @param {array} classes List of css classes
+        @param {string} name The name of the input
+        @param {string} placeholder The placeholder of the input
+        @param {string} value The value of the input
+        @param {string} on_click Callback on click
+        @param {string} on_change Callback on change
+    #}
+
+  {# HTML attributes #}
+  {% set attributes = {
+    id: props.id,
+    class: props.classes,
+    value: props.value,
+    type: 'text',
+    name: props.name,
+    placeholder: props.placeholder,
+    onClick: props.on_click,
+    onChange: props.on_change
+  } %}
+
+  {# Output #}
+  <input {{ attributes|arrayToAttributesHTML }} />
+{% endmacro %}

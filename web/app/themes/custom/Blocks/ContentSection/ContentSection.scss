@@ -1,0 +1,68 @@
+@import "@Utils/Sass/Mixins";
+@import "@Utils/Sass/Functions";
+
+$content-section-image-padding: 1em;
+$content-section-image-max-width: 100%;
+
+.content-section {
+  position: relative;
+
+  @include media-breakpoint-up("vertical-tablet") {
+    &--text-right .content-section__column-wrapper {
+      flex-direction: row-reverse;
+    }
+  }
+
+  .%CSS_PREFIX%main-wrapper > *:first-child {
+    position: relative;
+    z-index: 1;
+  }
+
+  &__column-wrapper {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+
+    @include media-breakpoint-up("vertical-tablet") {
+      flex-direction: row;
+    }
+  }
+
+  &__column {
+    align-items: center;
+    display: flex;
+    flex: 0 0 100%;
+
+    @include media-breakpoint-up("vertical-tablet") {
+      flex: 1;
+    }
+  }
+
+  &__image {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    order: -1;
+    padding: $content-section-image-padding;
+
+    @include media-breakpoint-up("vertical-tablet") {
+      order: unset;
+    }
+
+    img {
+      height: auto;
+      max-width: $content-section-image-max-width;
+    }
+  }
+
+  &__content {
+    flex: 1;
+  }
+}
+
+.text-content-align-top {
+  .content-section__column {
+    align-items: flex-start;
+  }
+}

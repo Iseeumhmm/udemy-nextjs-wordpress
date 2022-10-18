@@ -1,0 +1,61 @@
+{% macro LatestNews(props) %}
+  {#
+        Latestnews
+        This component is a listing of the latest news.
+
+        @param {string} id The id of the menu
+        @param {array} classes List of css classes
+        @param {array} news List of news to display [{title,link,thumbnail,description,author,date},...]
+        @param {string} read_more_link Read More News link
+        @param {string} read_more_text Read More News text
+    #}
+
+  {# Parameters #}
+  {% set title = props.title ?? 'Recent News' %}
+  {% set news = props.news ?? [] %}
+  {% set read_more_text = props.read_more_text ?? 'Read More News' %}
+
+  {# Output #}
+  {% from '@Components/NewsCard/NewsCard.twig' import NewsCard %}
+  {% from '@Components/Link/Link.twig' import Link %}
+
+  {# HTML attributes #}
+  {% set attributes = {
+    id: props.id,
+    class: (props.classes ?? [])|merge(['latest-news'])
+  } %}
+
+  <div {{ attributes|arrayToAttributesHTML }}>
+    {% if title %}
+      <h2 class="latest-news__title">
+        {{ title }}
+      </h2>
+    {% endif %}
+
+    <div class="latest-news__cards">
+      {% for item in news %}
+        {{
+          NewsCard({
+            title: item.title,
+            link: item.link,
+            thumbnail: item.thumbnail,
+            text: item.description,
+            author: item.modified_author,
+            date: item.modified_date
+          })
+        }}
+      {% endfor %}
+    </div>
+    {% if props.read_more_link and read_more_text %}
+      <div class="latest-news__read-more">
+        {{
+          Link({
+            variants: ['button'],
+            link: props.read_more_link,
+            content: read_more_text
+          })
+        }}
+      </div>
+    {% endif %}
+  </div>
+{% endmacro %}

@@ -1,0 +1,52 @@
+{% macro Footer(props) %}
+  {#
+      Footer
+      This component is the main site footer.
+      It will appear at the bottom of every page on the site.
+
+      @param {string} id The id
+      @param {array} classes List of css classes
+      @param {string} logo The logo url
+      @param {Timber\Menu} menu The menu
+  #}
+
+  {# HTML attributes #}
+  {% set attributes = {
+    id: props.id,
+    class: (props.classes ?? [])|merge(['%CSS_PREFIX%main-footer'])
+  } %}
+
+  {# Output #}
+  {% from '@Components/Menu/Menu.twig' import Menu %}
+  {% from '@Components/Picture/Picture.twig' import Picture %}
+
+  <footer {{ attributes|arrayToAttributesHTML }}>
+    <div class="%CSS_PREFIX%main-wrapper">
+      {# Logo #}
+      <div class="%CSS_PREFIX%main-footer__logo">
+        {{
+          Picture({
+            classes: ['logo'],
+            sources: [
+              {
+                media: '',
+                url: props.logo
+              }
+            ],
+            alt: props.logo_alt
+          })
+        }}
+      </div>
+
+      {% if props.menu %}
+        {{
+          Menu({
+            items: props.menu.items
+          })
+        }}
+      {% endif %}
+
+      <small class="%CSS_PREFIX%main-footer__copyright">{{ 'Copyright © ' ~ ('now'|date('Y')) }} {{ props.copyrightText }}</small>
+    </div>
+  </footer>
+{% endmacro %}

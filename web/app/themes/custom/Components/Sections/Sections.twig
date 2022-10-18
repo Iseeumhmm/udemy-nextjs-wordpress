@@ -1,0 +1,29 @@
+{# 
+    Sections component
+
+    IMPORTANT: Here we use {% include %} instead of {% import %} but it depends on your website's content.
+    
+    When we compare {% include %} with a file that has no macro VS import with a file that has a macro, calling include is faster than
+    calling {% import %} and then calling the macro.
+
+    However, calling 5 times {% include %} of the same file is much slower than calling once {% import %} and then calling 5 times the macro.
+    
+    So it all comes to what the content looks like on your site. 
+    If you use only once the sections in the page then include is good,
+    but if you reuse many times the same sections in the page, then a macro is better.
+
+    On the code side of things, using {% include %} without macro allows us to do this loop in a very short way, 
+    vs using macros would force us to have a if..else to handle all possible case to call the appropriate macro on each case.
+#}
+{% macro Sections(props) %}
+  {# Looping through the sections of the page #}
+  {% for section_key, section in props.page_sections %}
+    {# Format the path of the section to include #}
+    {% set component_path = '@Blocks/' ~ section.acf_fc_layout ~ '/' ~ section.acf_fc_layout ~ '.twig' %}
+
+    {# Include the section #}
+    {% include component_path with {
+      props: section
+    } only %}
+  {% endfor %}
+{% endmacro %}

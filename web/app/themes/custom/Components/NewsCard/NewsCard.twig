@@ -1,0 +1,105 @@
+{#
+    NewsCard
+    This component is a news card.
+
+    @param {string} id The id
+    @param {array} classes List of css classes
+    @param {Timber\Image} thumbnail The thumbnail
+    @param {string} title The title
+    @param {string} text The text (please keep it short!)
+    @param {Date} date The date
+    @param {string} dateFormat Format of the date (D, M jS, g:ia)
+    @param {string} lastUpdatedText Last updated text
+    @param {string} author The author name
+    @param {string} link The link
+    @param {bool} linkWrapsCard Does the link wraps the card? (Depends on the author)
+    @param {string} readmore_text Read more text (Read More)
+    @param {array[string]} attributes The Array contain the extra attributes or used for merged the attributes.
+#}
+
+{% macro NewsCard(props) %}
+  {# Parameters #}
+  {% set date_format = props.dateFormat ?? 'D, M jS, g:ia' %}
+  {% set last_updated_text = props.lastUpdatedText ?? 'Last updated' %}
+  {% set readmore_text = props.readmore_text ?? 'Read More' %}
+
+  {% from '@Components/Picture/Picture.twig' import Picture %}
+  {% from '@Components/Link/Link.twig' import Link %}
+
+  <article {{ {
+      id: props.id,
+      class: (props.classes ?? [])|merge(
+        [
+          'news-card',
+          'card'
+        ]
+      )
+    }|arrayToAttributesHTML(props.attributes) }}>
+    {# The thumbnail #}
+    {% if props.thumbnail and props.thumbnail.src %}
+      <div class="news-card__image">
+        {{
+          Picture({
+            sources: [
+              {
+                url: props.thumbnail.src('large')
+              }
+            ],
+            width: props.thumbnail.width,
+            height: props.thumbnail.height,
+            alt: props.title
+          })
+        }}
+      </div>
+    {% endif %}
+
+    {# The card's text #}
+    <div class="news-card__text">
+      {# The title #}
+      <header>
+        <h3>
+          {{ props.title }}
+        </h3>
+      </header>
+
+      {# The date and author #}
+      {% if date or props.author %}
+        <small class="news-card__date-author">
+          {% if props.date %}
+            <span class="news-card__date">
+              {{ last_updated_text }} <time datetime="{{ props.date|date('Y-m-d\\Th:i:s') }}">{{ props.date|date(date_format) }}</time>
+            </span>
+          {% endif %}
+          {% if props.author %}
+            By
+            <a href="{{ props.author.link }}" class="news-card__author-link" title="View Content by {{ props.author.name|title }}">
+              <span class="news-card__author">{{ props.author.name|title }}</span>
+            </a>
+          {% endif %}
+        </small>
+      {% endif %}
+
+      {# The text #}
+      {% if props.text %}
+        <p class="news-card__description">
+          {{ props.text }}
+        </p>
+      {% endif %}
+
+      {# The button #}
+      <p>
+        {{
+          Link({
+            classes: [
+              'button',
+              'news-card__link'
+            ],
+            title: props.title,
+            link: props.link,
+            content: readmore_text
+          })
+        }}
+      </p>
+    </div>
+  </article>
+{% endmacro %}

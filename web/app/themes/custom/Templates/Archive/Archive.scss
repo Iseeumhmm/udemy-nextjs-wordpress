@@ -1,0 +1,9 @@
+@import "@Utils/Sass/Mixins";
+@import "@Utils/Sass/Functions";
+@import "@Components/PostsLoop/PostsLoop";
+
+.articles .news-card {
+  margin-left: 0;
+  margin-right: 0;
+  max-width: none;
+}

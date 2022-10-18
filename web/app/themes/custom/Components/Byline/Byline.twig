@@ -1,0 +1,79 @@
+{% macro Byline(props) %}
+  {#
+    Byline
+    This macro is for the post Byline
+
+    @param {array}   props  This macro accepts a single argument. Refer to the key/value list below for the full options.
+
+    Props Key/Value List:
+    @param {TimberPost}  post        The Timber/Post Object of the page to gather information from.
+    @param {string} dateformat       The string format to use for formatting the date.
+    @param {array}  features         An array of arrays used for byline features, a feature or label set to false will not appear.
+    @param {array}  classes          An array of class names for the component.
+
+    Features
+    @param {array} features.author    The author of the post.
+    @param {array} features.published The date the post was published.
+    @param {array} features.updated   The date the post was last updated.
+
+    Each feature excepts a single field for a label, if it's set a label is outputted for the feature, otherwise no label is shown.
+    If a feature is set to false then it will not output at all.
+
+    @param {string} features.author.label     The label for the author content.
+    @param {string} features.published.label  The label for the published date.
+    @param {string} features.updated.label    The label for the updated date.
+  #}
+
+  {# Defaults #}
+  {% set features =
+    {
+      author: {
+        label: 'By'
+      },
+      published: {
+        label: false
+      },
+      updated: false
+    }|merge(props.features ? props.features : [])
+  %}
+
+  {# Output #}
+  <div  {{ 
+        {
+            id: props.id,
+            class: (props.classes ?? [])|merge(['byline']),
+        }|arrayToAttributesHTML(props.attributes) 
+  }}>
+    {# Author #}
+    {% if features.author %}
+      <address class="byline__author">
+        {% if features.author.label %}
+          <span class="byline__label">{{ features.author.label }}</span>
+        {% endif %}
+        <a href="{{ props.post.author.link }}" rel="author">{{ props.post.author.name }}</a>
+      </address>
+    {% endif %}
+
+    {# Published Date #}
+    {% if features.published %}
+      <div class="byline__published">
+        {% if features.published.label %}
+          <span class="byline__label">{{ features.published.label }}</span>
+        {% endif %}
+        <time datetime="{{ props.post.date('Y-m-d\\TH:i:sA') }}" title="{{ props.post.date() }}">{{ props.post.date(props.dateformat ?? 'M d, Y') }}</time>
+      </div>
+    {% endif %}
+
+    {# Updated Date #}
+    {% if features.updated %}
+      <div class="byline__updated">
+        {% if features.updated.label %}
+          <span class="byline__label">{{ features.updated.label }}</span>
+        {% endif %}
+        <time datetime="{{ props.post.modified_date('Y-m-d\\TH:i:sA') }}" title="{{ props.post.modified_date() }}">
+          {{ props.post.modified_date(props.dateformat ?? 'M d, Y') }}
+        </time>
+      </div>
+    {% endif %}
+  </div>
+{% endmacro %}

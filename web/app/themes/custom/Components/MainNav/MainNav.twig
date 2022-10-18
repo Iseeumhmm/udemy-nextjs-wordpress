@@ -1,0 +1,55 @@
+{% macro MainNav(props) %}
+  {#
+    mainNav
+    This component is the main nav.
+
+    @param {string} id The id of the menu
+    @param {array} classes List of css classes
+    @param {Timber\Menu} menu The menu
+    @param {string} search_placeholder The placeholder of the search input
+    @param {boolean} has_search Is there a search?
+    @param {string} search_value The value of the search input
+  #}
+
+  {# Parameters #}
+  {% set has_search = props.has_search ?? true %}
+
+  {# Output #}
+  {% from '@Components/Menu/Menu.twig' import Menu %}
+  {% from '@Components/Button/Button.twig' import Button %}
+  {% from '@Components/Search/Search.twig' import Search %}
+
+  {# HTML attributes #}
+  {% set attributes = {
+    id: props.id,
+    class: (props.classes ?? [])|merge(['main-nav'])
+  } %}
+
+  <div {{ attributes|arrayToAttributesHTML }}>
+    {{
+      Button({
+        classes: ['main-nav__mobile-menu-toggle', 'burger-button'],
+        text: 'Menu'
+      })
+    }}
+
+    {% set search_field = '' %}
+
+    {% if has_search %}
+      {% set search_field =
+        Search({
+          placeholder: props.search_placeholder,
+          value: props.search_value
+        })
+      %}
+    {% endif %}
+
+    {{
+      Menu({
+        items: props.menu.items,
+        aria_label: 'Main Navigation',
+        before_content: search_field
+      })
+    }}
+  </div>
+{% endmacro %}

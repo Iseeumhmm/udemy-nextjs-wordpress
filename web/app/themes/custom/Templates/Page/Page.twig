@@ -1,0 +1,19 @@
+{% extends '@Templates/Layout/Layout.twig' %}
+
+{% from '@Components/Sections/Sections.twig' import Sections %}
+
+{% block content %}
+  {% if post.title %}
+    <div class="%CSS_PREFIX%main-wrapper">
+      <h1>
+        {{ post.title }}
+      </h1>
+    </div>
+  {% endif %}
+
+  {{
+    Sections({
+      page_sections: post.meta('page_sections')
+    })
+  }}
+{% endblock %}

@@ -1,0 +1,50 @@
+$section-color: inherit;
+$section-background: #fff;
+$section-margin: 0;
+$section-padding: 3em 0;
+$section-background-alternate: #eee;
+
+.section {
+  background: $section-background;
+  color: $section-color;
+  margin: $section-margin;
+  padding: $section-padding;
+  position: relative;
+
+  &__background-color {
+    background: #fff;
+    bottom: 0;
+    left: 0;
+    opacity: 0.9;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  .custom-main-wrapper {
+    position: relative;
+  }
+
+  // Alternate variant
+  &.alternate {
+    background: $section-background-alternate;
+
+    .section__background-color {
+      background: $section-background-alternate;
+    }
+  }
+
+  &__title {
+    &--center {
+      .section__title {
+        text-align: center;
+      }
+    }
+
+    &--right {
+      .section__title {
+        text-align: right;
+      }
+    }
+  }
+}

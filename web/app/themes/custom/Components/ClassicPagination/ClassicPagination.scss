@@ -1,0 +1,78 @@
+$classic-pagination-color: $color-primary;
+$classic-pagination-background: #fff;
+$classic-pagination-border: 1px solid #ddd;
+$classic-pagination-border-radius: 4px;
+$classic-pagination-transition: all 0.3s;
+$classic-pagination-margin: 1em 0;
+$classic-pagination-item-color-current: #fff;
+$classic-pagination-item-background-current: $color-primary;
+$classic-pagination-item-color-hover: #fff;
+$classic-pagination-item-background-hover: $color-primary;
+$classic-pagination-font-size: 0.875rem;
+
+.classic-pagination {
+  margin: $classic-pagination-margin;
+
+  ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+  }
+
+  li {
+    background-color: inherit;
+    border: $classic-pagination-border;
+    border-right: 0;
+    font-size: $classic-pagination-font-size;
+    height: 100%;
+    line-height: 2.3em;
+    opacity: 1;
+    pointer-events: all;
+    text-align: center;
+    width: 34px;
+
+    a {
+      color: $classic-pagination-color;
+      display: block;
+      text-decoration: none;
+
+      &:not([href]) {
+        color: $classic-pagination-color;
+        opacity: 0.5;
+        pointer-events: none;
+      }
+
+      &.current {
+        background-color: $classic-pagination-item-background-current;
+        color: $classic-pagination-item-color-current;
+        opacity: 1;
+        pointer-events: all;
+      }
+    }
+
+    &:first-child a {
+      border-radius: $classic-pagination-border-radius 0 0 $classic-pagination-border-radius;
+    }
+
+    &:last-child a {
+      border-radius: 0 $classic-pagination-border-radius $classic-pagination-border-radius 0;
+    }
+
+    a:not(.spacer):hover {
+      background-color: $classic-pagination-item-background-hover;
+      color: $classic-pagination-item-color-hover;
+      opacity: 0.9;
+    }
+
+    &:first-child {
+      border-radius: $classic-pagination-border-radius 0 0 $classic-pagination-border-radius;
+      padding: 0;
+    }
+
+    &:last-child {
+      border-radius: 0 $classic-pagination-border-radius $classic-pagination-border-radius 0;
+      border-right: $classic-pagination-border;
+      padding: 0;
+    }
+  }
+}

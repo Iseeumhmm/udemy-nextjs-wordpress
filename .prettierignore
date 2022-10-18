@@ -1,0 +1,5 @@
+# Ignore Sass cache and Css generated files.
+**/.sass-cache/**/*
+**/css/style.css.map
+group_*.json
+Vendors/**/*

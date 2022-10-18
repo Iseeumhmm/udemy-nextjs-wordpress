@@ -1,0 +1,63 @@
+{% macro Menu(props) %}
+  {#
+        Menu
+        This component is a menu.
+
+        @param {string} id The id of the menu
+        @param {array} classes List of css classes
+        @param {object} items The menu items
+        @param {string} aria_label Accessibility label
+        @param {string} before_content Content before the menu
+        @param {string} after_content Content after the menu
+    #}
+
+  {# HTML attributes #}
+  {% set attributes = {
+    id: props.id,
+    class: (props.classes is iterable ? props.classes : [])|merge(['menu']),
+    'aria-label': props.aria_label ?? 'Navigation'
+  } %}
+
+  {# Output #}
+  <nav {{ attributes|arrayToAttributesHTML }}>
+    {{ props.before_content|raw }}
+    {% if props.items %}
+      <ul class="menu--level-1">
+        {% for item in props.items %}
+          {{ _self.RecursiveMenu(item, 2) }}
+        {% endfor %}
+      </ul>
+    {% endif %}
+    {{ props.after_content|raw }}
+  </nav>
+{% endmacro %}
+
+{% macro RecursiveMenu(item, level) %}
+  {% set li_attributes = {
+    class: item.classes|merge(['menu__menu-item']),
+    'aria-current': item.current ? 'page' : ''
+  } %}
+
+  <li {{ li_attributes|arrayToAttributesHTML }}>
+    {% set link_attributes = {
+      class: item.classes|merge(['menu__item-link']),
+      href: item.link
+    } %}
+
+    <div class="menu__item-links-wrapper">
+      <a {{ link_attributes|arrayToAttributesHTML }}>{{ item.title }}</a>
+      {% if item.children %}
+        <a class="menu__sub-menu-opener"></a>
+      {% endif %}
+    </div>
+
+    {% if item.children %}
+      <ul class="menu--level-{{ level }}">
+        {% for child in item.children %}
+          {% set level = level + 1 %}
+          {{ _self.RecursiveMenu(child, level) }}
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </li>
+{% endmacro %}

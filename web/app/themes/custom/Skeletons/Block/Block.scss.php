@@ -1,0 +1,7 @@
+
+.<?= $BlockNameSlugify ?> {
+
+  &__content {
+
+  }
+}

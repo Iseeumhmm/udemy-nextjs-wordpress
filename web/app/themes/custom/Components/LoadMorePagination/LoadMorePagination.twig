@@ -1,0 +1,40 @@
+{% macro LoadMorePagination(props) %}
+  {#
+        LoadMorePagination
+        This component is a pagination with ajax. It adds a Load more button to call the other page in ajax. 
+
+        @param {string} id The id of the menu
+        @param {array} classes List of css classes
+        @param {array[string]} attributes The Array contain the extra attributes or used for merged the attributes. example : class attribute
+        @param {string} props.next The props.next link
+        @param {string} type Type of pagination ('loadMore')
+        @param {array} targeted_page Targeted page number for the Load More pagination
+        @param {array} current_page Current page number for the Load More pagination
+    #}
+
+  {# Output #}
+  <nav {{ 
+      {
+        id: props.id,
+        class: (props.classes ?? [])|merge(['loadmore-pagination']),
+        role: 'navigation',
+        'aria-label': 'Load More LoadMorePagination Navigation',
+        'data-type': props.type ?? 'loadMore',
+        'data-targetedPage': props.targeted_page ?? 1,
+        'data-currentPage': props.current_page ?? 1
+      }|arrayToAttributesHTML(props.attributes) 
+  }}>
+    {% from '@Components/Link/Link.twig' import Link %}
+
+    {# Output #}
+    {% if props.next and props.next.link %}
+      {{
+        Link({
+          link: props.next.link,
+          content: props.next.text ?? 'Load More',
+          classes: ['button']
+        })
+      }}
+    {% endif %}
+  </nav>
+{% endmacro %}

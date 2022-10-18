@@ -1,0 +1,70 @@
+{% macro AuthorCard(props) %}
+  {#
+        AuthorCard
+        This component is a AuthorCard.
+
+        @param {string} id The id of the menu
+        @param {array} classes List of css classes
+        @param {string} link The link to the author
+        @param {Image} picture The picture of the author
+        @param {string} name The name of the author
+        @param {string} description The description of the author
+        @param {string/false} read_more The read more text
+
+    #}
+
+  {# Output #}
+  {% from '@Components/Card/Card.twig' import Card %}
+
+  {{
+    Card({
+      id: props.id,
+      classes: ['author-card']|merge(props.classes ?? []),
+      content: _self.AuthorCardContent({
+        link: props.link,
+        picture: props.picture,
+        name: props.name,
+        description: props.description,
+        read_more: props.read_more ?? 'More from author'
+      })
+    })
+  }}
+{% endmacro %}
+
+{% macro AuthorCardContent(props) %}
+  {% from '@Components/Picture/Picture.twig' import Picture %}
+  {% from '@Components/Link/Link.twig' import Link %}
+  {{
+    Picture({
+      sources: [
+        {
+          url: props.picture.src('medium')
+        }
+      ],
+      width: props.picture.width,
+      height: props.picture.height,
+      alt: props.name
+    })
+  }}
+  <div class="author-card__text">
+    <h3 class="author-card__title">
+      {{ props.name }}
+    </h3>
+    <p>
+      {{ props.description }}
+    </p>
+
+    {% if props.read_more %}
+      <p class="author-card__read-more">
+        {{
+          Link({
+            classes: ['author-card__link'],
+            title: props.name,
+            link: props.link,
+            content: props.read_more
+          })
+        }}
+      </p>
+    {% endif %}
+  </div>
+{% endmacro %}

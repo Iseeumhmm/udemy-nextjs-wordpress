@@ -1,0 +1,17 @@
+// ===========================================================================
+//  Byline Styles
+// ===========================================================================
+
+.byline {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+
+  &__author {
+    font: inherit;
+  }
+
+  > :not(:last-child) {
+    margin-right: 0.5em;
+  }
+}

@@ -1,0 +1,61 @@
+{% from '@Components/Header/Header.twig' import Header %}
+{% from '@Components/Footer/Footer.twig' import Footer %}
+{% from '@Components/BackToTop/BackToTop.twig' import BackToTop %}
+
+<!DOCTYPE html>
+<html {{ site.language_attributes }}>
+  <head>
+    {% block head %}
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="pingback" href="{{ site.pingback_url }}" />
+
+      {{ function('wp_head') }}
+
+      {% block googletagmanager %}
+
+      {% endblock %}
+
+      {% block schema %}
+
+      {% endblock %}
+    {% endblock %}
+  </head>
+
+  {# HTML attributes #}
+  {% set body_attributes = {
+    class: body_class
+  } %}
+
+  <body {{ body_attributes|arrayToAttributesHTML }}>
+    {{ function('wp_body_open') }}
+
+    {{
+      Header({
+        menu: primary_menu,
+        logo: logo,
+        logo_alt: logo_alt_text
+      })
+    }}
+
+    <main>
+      {% block content %}
+
+      {% endblock %}
+    </main>
+
+    {{
+      Footer({
+        menu: footer_menu,
+        logo: logo,
+        logo_alt: logo_alt_text,
+        copyright_text: options['footer_copyright']
+      })
+    }}
+
+    {{ BackToTop() }}
+
+    {{ function('wp_footer') }}
+  </body>
+</html>

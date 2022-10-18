@@ -1,0 +1,284 @@
+{% extends '@Templates/Layout/Layout.twig' %}
+
+{% from '@Components/AuthorCard/AuthorCard.twig' import AuthorCard %}
+{% from '@Components/Breadcrumbs/Breadcrumbs.twig' import Breadcrumbs %}
+{% from '@Components/Button/Button.twig' import Button %}
+{% from '@Components/Card/Card.twig' import Card %}
+{% from '@Components/Icon/Icon.twig' import Icon %}
+{% from '@Components/LatestNews/LatestNews.twig' import LatestNews %}
+{% from '@Components/Link/Link.twig' import Link %}
+{% from '@Components/NewsCard/NewsCard.twig' import NewsCard %}
+{% from '@Components/ClassicPagination/ClassicPagination.twig' import ClassicPagination %}
+{% from '@Components/Picture/Picture.twig' import Picture %}
+{% from '@Components/PostsLoop/PostsLoop.twig' import PostsLoop %}
+{% from '@Components/Search/Search.twig' import Search %}
+{% from '@Components/SocialShare/SocialShare.twig' import SocialShare %}
+{% from '@Components/StickyFooter/StickyFooter.twig' import StickyFooter %}
+{% from '@Components/TextInput/TextInput.twig' import TextInput %}
+
+{% from '@Blocks/GamblingTableSection/GamblingTableSection.twig' import GamblingTableSection %}
+{% from '@Components/Sections/Sections.twig' import Sections %}
+{% from '@Components/Slider/Slider.twig' import Slider %}
+{% from '@Components/Byline/Byline.twig' import Byline %}
+
+{% block content %}
+  <div class="custom-main-wrapper">
+    {# AuthorCard component #}
+    <h1>
+      AuthorCard
+    </h1>
+
+    {{
+      AuthorCard({
+        name: author_info.name,
+        description: author_info.name,
+        picture: author_info.picture,
+        link: author_info.link
+      })
+    }}
+    
+    <h1>
+      Byline
+    </h1>
+
+    {{
+     Byline({
+        post: byline.post,
+        dateformat: byline.dateformat,
+        features: byline.features
+      })
+    }}
+
+    <h1>
+      Breadcrumbs Using Yoast
+    </h1>
+    {# Breadcrumbs using Yoast #}
+    {% if yoast_breadcrumbs %}
+      {{ yoast_breadcrumbs }}
+    {% endif %}
+
+    {# Breadcrumbs component #}
+    <h1>
+      Breadcrumbs
+    </h1>
+
+    {{
+      Breadcrumbs({
+        items: breadcrumbs_items
+      })
+    }}
+
+    {# Button component #}
+    <h1>
+      Button
+    </h1>
+
+    {{
+      Button({
+        text: button.text
+      })
+    }}
+
+    {# Card component #}
+    <h1>
+      Card
+    </h1>
+
+    {{
+      Card({
+        content: card_content.content
+      })
+    }}
+
+    {# GamblingTable component #}
+    <h1>
+      GamblingTable
+    </h1>
+
+    {{ function('do_shortcode', ctatable.shortcode) }}
+
+    {# Icon #}
+    <h1>
+      Icon
+    </h1>
+
+    {{
+      Icon({
+        icon: icon_items.icon
+      })
+    }}
+
+    {# Icon #}
+    <h1>
+      Latest News
+    </h1>
+
+    {{
+      LatestNews({
+        news: latest_news
+      })
+    }}
+
+    {# Link #}
+    <h1>
+      Link
+    </h1>
+
+    {{
+      Link({
+        href: link_items.href,
+        content: link_items.content
+      })
+    }}
+
+    {# NewsCard #}
+    <h1>
+      NewsCard
+    </h1>
+
+    {{
+      NewsCard({
+        title: 'Hi',
+        link: '/hi',
+        thumbnail: thumbnail,
+        text: 'Hi diddly ho neighborinos!',
+        author: flanders,
+        date: modified_date
+      })
+    }}
+
+    {# ClassicPagination #}
+    <h1>
+      ClassicPagination
+    </h1>
+
+    {{
+      ClassicPagination({
+        pages: pagination_items.pages,
+        next: pagination_items.next
+      })
+    }}
+
+    {# Picture #}
+    <h1>
+      Picture
+    </h1>
+
+    {{
+      Picture({
+        sources: picture_items.sources,
+        width: picture_items.width,
+        height: picture_items.height,
+        alt: picture_items.alt
+      })
+    }}
+
+    {# Posts Loop #}
+    <h1>
+      Posts Loop
+    </h1>
+
+    {{
+      PostsLoop({
+        posts: posts,
+        pagination_is_load_more: false
+      })
+    }}
+
+    {# Search #}
+    <h1>
+      Search
+    </h1>
+
+    {{
+      Search({
+        id: 'styleguide-search',
+        placeholder: 'Search by keywords',
+        value: searched_value
+      })
+    }}
+
+    {# Example of a hardcoded Slider #}
+    <h1>
+      Slider
+    </h1>
+
+    {{
+      Slider({
+        id: 'styleguide-slider',
+        slides: slider_items.slides
+      })
+    }}
+
+    {# Social Share #}
+    <h1>
+      Social Share
+    </h1>
+
+    {{
+      SocialShare({
+        link: 'https://youtu.be/dQw4w9WgXcQ'
+      })
+    }}
+
+    {# Sticky Footer #}
+    <h1>
+      Sticky Footer
+    </h1>
+
+    <p>
+      See below
+    </p>
+
+    {{
+      StickyFooter({
+        content: sticky_footer.content
+      })
+    }}
+
+    {# Text Input #}
+    <h1>
+      Text Input
+    </h1>
+
+    {{
+      TextInput({
+        name: text_input.name,
+        placeholder: text_input.placeholder
+      })
+    }}
+
+    {# ContentSection #}
+    <h1>
+      ContentSection
+    </h1>
+
+    {% include '@Blocks/ContentSection/ContentSection.twig' with {
+      props: content_section
+    } %}
+
+    {# GamblingTableSection #}
+    <h1>
+      GamblingTableSection
+    </h1>
+
+    {% include '@Blocks/GamblingTableSection/GamblingTableSection.twig' with {
+      props: cta_section
+    } %}
+
+    {# ACF Sections #}
+    {# NOTE: It is possible to use the ACF sections in this custom template because the fields for the sections 
+      are displayed for both the default template and this custom template. 
+      If you want to use the sections in another custom template then make sure to edit the "Page: Content" group.
+    #}
+    <h1>
+      ACF Sections
+    </h1>
+
+    {{
+      Sections({
+        page_sections: post.meta('page_sections')
+      })
+    }}
+  </div>
+{% endblock %}

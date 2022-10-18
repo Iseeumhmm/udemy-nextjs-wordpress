@@ -1,0 +1,52 @@
+{% extends '@Templates/Layout/Layout.twig' %}
+
+{% from '@Components/Sections/Sections.twig' import Sections %}
+{% from '@Components/Slider/Slider.twig' import Slider %}
+
+{% block content %}
+  {% if post.title %}
+    <div class="custom-main-wrapper">
+    {# Example of using Yoast for breadcrumbs - see ThemeBase.php #}
+      {% if yoast_breadcrumbs %}{{ yoast_breadcrumbs }}{% endif %}
+      <h1>
+        {{ post.title }}
+      </h1>
+    </div>
+  {% endif %}
+  {# You can call any section directly like any other component #}
+  {# If you hardcode sections don't forget to make sure their style is enqueued #}
+
+  {# Example of a hardcoded call of the ContentSection #}
+  {% include '@Blocks/ContentSection/ContentSection.twig' with {
+    props: content_section
+  } %}
+
+  {# Example of a hardcoded call of the GamblingTableSection #}
+  {% include '@Blocks/GamblingTableSection/GamblingTableSection.twig' with {
+    props: cta_section
+  } %}
+
+  {# Example of a hardcoded Slider #}
+  {{ Slider({
+      slides: [
+        {
+          content: 'Would'
+        },
+        {
+          content: 'You'
+        },
+        {
+          content: 'Eat'
+        },
+        {
+          content: 'Cheese'
+        }
+      ]
+    }) }}
+
+  {# NOTE: It is possible to use the ACF sections in this custom template because the fields for the sections 
+    are displayed for both the default template and this custom template. 
+    If you want to use the sections in another custom template then make sure to edit the "Page: Content" group.
+  #}
+  {{ Sections(fields) }}
+{% endblock %}

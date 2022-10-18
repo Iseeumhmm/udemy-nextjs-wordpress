@@ -1,0 +1,27 @@
+{% macro Link(props) %}
+  {#
+    Link
+    This component is a link.
+   
+    @param {string} id Id attribute
+    @param {array} classes List of css classes
+    @param {string} link Url to be redirected to
+    @param {string} title Title attribute
+    @param {string} target Target attribute
+    @param {string} rel Rel attribute
+    @param {string} content Content wrapped by the link
+  #}
+
+  {# HTML attributes #}
+  {% set attributes = {
+    id: props.id,
+    class: props.classes,
+    href: props.link,
+    title: props.title,
+    target: props.target,
+    rel: props.rel
+  } %}
+
+  {# Output #}
+  <a {{ attributes|arrayToAttributesHTML }}>{{ props.content|raw }}</a>
+{% endmacro %}

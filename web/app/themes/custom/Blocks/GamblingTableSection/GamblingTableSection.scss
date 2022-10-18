@@ -1,0 +1,9 @@
+@import "@Utils/Sass/Mixins";
+@import "@Utils/Sass/Functions";
+@import "@Components/GamblingTable/GamblingTable";
+
+$gambling-table-section-background: #eee;
+
+.gambling-table-section {
+  background: $gambling-table-section-background;
+}

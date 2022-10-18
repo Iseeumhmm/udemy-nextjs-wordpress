@@ -1,0 +1,18 @@
+@use "sass:color";
+
+$link-color: #00f;
+$link-text-decoration: underline;
+$link-text-color-hover: color.adjust($link-color, $lightness: 20%);
+$link-text-decoration-hover: underline;
+
+a[href]:not(.button),
+.link {
+  color: $link-color;
+  cursor: pointer;
+  text-decoration: $link-text-decoration;
+
+  &:hover {
+    color: $link-text-color-hover;
+    text-decoration: $link-text-decoration-hover;
+  }
+}

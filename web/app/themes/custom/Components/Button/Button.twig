@@ -1,0 +1,27 @@
+{% macro Button(props) %}
+  {#
+    Button
+    This component is a button.
+   
+    @param {string} id The id of the button
+    @param {array} classes List of css classes
+    @param {string} text Text of the button
+    @param {boolean} disabled Is the button disable?
+    @param {string} on_click On Click callback function.
+    @param {string} type reset|submit Type of the button. 
+    @param {string} role Role attribute. 
+  #}
+
+  {# HTML attributes of the button #}
+  {% set attributes = {
+    id: props.id,
+    class: props.classes,
+    type: props.type == 'reset' or props.type == 'submit' ?? null,
+    role: props.role ?? null,
+    onClick: props.on_click,
+    disabled: props.disabled
+  } %}
+
+  {# Output #}
+  <button {{ attributes|arrayToAttributesHTML }}>{{ props.text }}</button>
+{% endmacro %}

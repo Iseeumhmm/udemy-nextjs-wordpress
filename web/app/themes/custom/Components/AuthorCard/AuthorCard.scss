@@ -1,0 +1,53 @@
+@import "@Components/Card/Card";
+
+$author-card-color: inherit;
+$author-card-background: none;
+$author-card-margin: 0;
+$author-card-padding: 1em;
+$author-card-title-font-size: 1.5em;
+$author-card-title-font-weight: bold;
+
+.author-card {
+  background: $author-card-background;
+  color: $author-card-color;
+  margin: $author-card-margin;
+  padding: $author-card-padding;
+  position: relative;
+
+  &__text {
+    flex: 1;
+    margin-top: 1em;
+
+    @include media-breakpoint-up("vertical-tablet") {
+      margin-left: 1em;
+      margin-top: 0;
+    }
+  }
+
+  picture {
+    flex: 0;
+  }
+
+  p:not(.author-card__title) {
+    margin-top: 1em;
+  }
+
+  &__title {
+    margin: 0;
+  }
+
+  &__title:not(h1):not(h2) {
+    font-size: $author-card-title-font-size;
+    font-weight: $author-card-title-font-weight;
+  }
+
+  &__link::after {
+    bottom: 0;
+    content: "";
+    display: block;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}

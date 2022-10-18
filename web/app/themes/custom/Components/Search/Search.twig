@@ -1,0 +1,46 @@
+{% macro Search(props) %}
+  {#
+      Image
+      This component is a image.
+
+      @param {string} id The id of the input
+      @param {array} classes List of css classes
+      @param {bool} has_label Does the search input has a label?
+      @param {string} placeholder The placeholder of the input
+      @param {string} value The value of the input
+      @param {string} submit_text The text of the submit button
+  #}
+
+  {# Output #}
+  {% from '@Components/TextInput/TextInput.twig' import TextInput %}
+  {% from '@Components/Button/Button.twig' import Button %}
+
+  {# HTML attributes #}
+  {% set attributes = {
+    id: props.id,
+    class: (props.classes ?? [])|merge(['search'])
+  } %}
+
+  <div {{ attributes|arrayToAttributesHTML }}>
+    <div class="search__icon"></div>
+    <form method="get" action="/" class="search__form">
+      {% if props.has_label %}
+        <label for="search__input">{{ props.placeholder }}</label>
+      {% endif %}
+      {{
+        TextInput({
+          classes: ['search__input'],
+          name: 's',
+          value: props.value,
+          placeholder: props.placeholder ?? 'Search'
+        })
+      }}
+      {{
+        Button({
+          classes: ['search__button'],
+          text: props.submit_text ?? 'Search'
+        })
+      }}
+    </form>
+  </div>
+{% endmacro %}

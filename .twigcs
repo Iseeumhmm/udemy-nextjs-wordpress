@@ -1,0 +1,13 @@
+<?php
+
+$ruleset = FriendsOfTwig\Twigcs\Ruleset\Official::class;
+
+if(class_exists('Atlantic\Themes\_NAMESPACE_\TwigConfig\CustomTwigCsRuleset\CustomRuleset')) {
+    $ruleset = Atlantic\Themes\_NAMESPACE_\TwigConfig\CustomTwigCsRuleset\CustomRuleset::class;
+}
+
+return \FriendsOfTwig\Twigcs\Config\Config::create() 
+    ->setName('my-config')
+    ->setSeverity('warning')
+    ->setRuleSet($ruleset)
+;

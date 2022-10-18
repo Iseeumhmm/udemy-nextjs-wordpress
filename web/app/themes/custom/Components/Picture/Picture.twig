@@ -1,0 +1,34 @@
+{% macro Picture(props) %}
+  {#
+    Picture
+    This component is an image.
+
+    @param {string} id The id image
+    @param {array} classes List of css classes. The 'image' class name is automaticly added on class attribute
+    @param {array} sources List of objects {media: "", url: ""}, the sources of the picture element
+    @param {string} alt The alt attribute of the img tag
+    @param {string} imageId The attachment id used for initialize image with TimberImage
+    @param {string} attributes The Array contain the extra attributes or used for merged the attributes. example : class attribute
+    
+  #}
+
+  {# Parameters #}
+  {% set image = props.imageId is defined
+    ? TimberImage(props.imageId)
+    : {
+      src: (props.sources ?? [])|first.url ?? '/app/public/assets/placeholder.png'
+    }
+  %}
+
+  {% set default_attributes = {
+    id: props.id,
+    class: (props.classes ?? [])|merge(['image']),
+    src: image.src,
+    width: props.width ? props.width : props.imageId ? image.width : null,
+    height: props.width ? props.width : props.imageId ? image.alt : null,
+    alt: props.width ? props.width : props.imageId ? image.alt : null
+  } %}
+
+  {# Output #}
+  <img {{ default_attributes|arrayToAttributesHTML(props.attributes) }} />
+{% endmacro %}

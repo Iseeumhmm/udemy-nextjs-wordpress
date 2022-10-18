@@ -1,0 +1,40 @@
+{#
+  GamblingTableSection
+  Lead-in heading and text with optional CTA Table(s) and hard-coded background image.      
+
+  @param {string} id The id of the menu
+  @param {array} classes List of css classes
+  @param {string} title Section Title / Lead-in Heading
+  @param {string} title_alignment The alignment of the title, left|center|right
+  @param {string} content Lead-in content preceeding the table
+  @param {string} cta_shortcode The CTA table shortcode to run do_shortcode on
+#}
+
+{# Output #}
+{% from '@Components/Section/Section.twig' import Section %}
+{{
+  Section({
+    id: props.id ?? function('apply_filters', 'sanitize_title', props.title),
+    classes: (props.classes ?? [])|merge(['gambling-table-section'])|merge(props.variants ?? []),
+    title: props.title,
+    title_alignment: props.title_alignment,
+    content: _self.sectionContent({
+      content: props.content,
+      cta_shortcode: props.gambling_shortcode
+    })
+  })
+}}
+
+{% macro sectionContent(props) %}
+  {# Lead-in paragraph(s) #}
+  {% if props.content is not empty %}
+    <div class="gambling-table-section__content">
+      {{ props.content }}
+    </div>
+  {% endif %}
+
+  {# GamblingAds Table #}
+  {% if props.cta_shortcode %}
+    {{ function('do_shortcode', props.cta_shortcode) }}
+  {% endif %}
+{% endmacro %}
