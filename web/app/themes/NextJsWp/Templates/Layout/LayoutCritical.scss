@@ -1,0 +1,19 @@
+// Put the general critical styles to be loaded in the head here
+
+@import "@Utils/Sass/Mixins";
+@import "@Utils/Sass/Functions";
+@import "@Utils/Sass/Theme/Typography";
+@import "@Components/Header/Header";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.nextjswp-main-wrapper {
+  margin: 0 auto;
+  max-width: 70rem;
+}

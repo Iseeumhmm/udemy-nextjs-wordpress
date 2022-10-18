@@ -77,12 +77,12 @@ module.exports = {
       // ESLint isn't aware of any Webpack aliases so it is required
       alias: {
         map: [
-          ["@Blocks", "./web/app/themes/%THEME_NAME%/Blocks"],
-          ["@Components", "./web/app/themes/%THEME_NAME%/Components"],
-          ["@Templates", "./web/app/themes/%THEME_NAME%/Templates"],
-          ["@Utils", "./web/app/themes/%THEME_NAME%/Utils"],
-          ["@Assets", "./web/app/themes/%THEME_NAME%/Assets"],
-          ["@Vendors", "./web/app/themes/%THEME_NAME%/Vendors"],
+          ["@Blocks", "./web/app/themes/NextJsWp/Blocks"],
+          ["@Components", "./web/app/themes/NextJsWp/Components"],
+          ["@Templates", "./web/app/themes/NextJsWp/Templates"],
+          ["@Utils", "./web/app/themes/NextJsWp/Utils"],
+          ["@Assets", "./web/app/themes/NextJsWp/Assets"],
+          ["@Vendors", "./web/app/themes/NextJsWp/Vendors"],
         ],
         extensions: [".js", ".jsx", ".json"],
       },

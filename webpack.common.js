@@ -7,9 +7,9 @@ const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
 
 // Paths
 const themePath = "./web/app/themes/**";
-const themePathAbsolute = "/web/app/themes/%THEME_NAME%";
+const themePathAbsolute = "/web/app/themes/NextJsWp";
 const publicPathAbsolute = `/app/public/`;
-const assetsPathAbsolute = path.resolve(__dirname, "web/app/themes/%THEME_NAME%/Assets");
+const assetsPathAbsolute = path.resolve(__dirname, "web/app/themes/NextJsWp/Assets");
 
 /**
  * Generate the entries

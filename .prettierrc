@@ -5,5 +5,5 @@
   "twigAlwaysBreakObjects": true,
   "twigFollowOfficialCodingStandards": true,
   "plugins": ["./node_modules/prettier-plugin-twig-melody"],
-  "twigMelodyPlugins": ["./web/app/themes/%THEME_NAME%/TwigConfig/TwigPlugins/ArrayExpression"]
+  "twigMelodyPlugins": ["./web/app/themes/NextJsWp/TwigConfig/TwigPlugins/ArrayExpression"]
 }

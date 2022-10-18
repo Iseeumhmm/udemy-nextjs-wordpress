@@ -1,0 +1,80 @@
+$header-background: $color-secondary;
+$header-padding: 1em;
+$header-padding-desktop: 0;
+$header-logo-max-width: 100px;
+$header-logo-max-height: 70px;
+$header-height: 50px;
+$header-height-desktop: 70px;
+
+.nextjswp-main-header {
+  @import "@Components/MainNav/MainNav";
+  @import "@Components/Search/Search";
+
+  align-items: center;
+  background: $header-background;
+  left: 0;
+  position: sticky;
+  right: 0;
+  top: 0;
+  z-index: 9;
+
+  @include media-breakpoint-up("vertical-tablet") {
+    height: auto;
+  }
+
+  .nextjswp-main-wrapper {
+    align-items: center;
+    display: flex;
+    height: $header-height;
+    padding: $header-padding;
+    width: 100%;
+
+    @include media-breakpoint-up("vertical-tablet") {
+      height: $header-height-desktop;
+      padding: $header-padding-desktop;
+    }
+  }
+
+  .nextjswp-logo-wrapper {
+    padding-right: 1em;
+
+    img {
+      height: auto;
+      max-height: 40px;
+      max-width: $header-logo-max-width;
+      width: auto;
+
+      @include media-breakpoint-up("vertical-tablet") {
+        max-height: $header-logo-max-height;
+      }
+    }
+  }
+
+  .search {
+    flex: 0;
+  }
+
+  .mobile-menu-toggle {
+    float: right;
+  }
+}
+
+html.js .nextjswp-main-header {
+  height: 50px;
+
+  @include media-breakpoint-up("vertical-tablet") {
+    height: auto;
+  }
+
+  .nextjswp-main-wrapper {
+    align-items: center;
+    display: flex;
+  }
+}
+
+// When we are logged in, set the space caused by the admin bar
+body.admin-bar {
+  .nextjswp-main-header {
+    top: 32px;
+  }
+}

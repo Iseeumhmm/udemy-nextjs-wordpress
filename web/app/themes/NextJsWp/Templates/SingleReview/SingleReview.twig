@@ -1,0 +1,65 @@
+{% extends '@Templates/Layout/Layout.twig' %}
+
+{% from '@Components/Breadcrumbs/Breadcrumbs.twig' import Breadcrumbs %}
+{% from '@Components/PostMeta/PostMeta.twig' import PostMeta %}
+{% from '@Components/Picture/Picture.twig' import Picture %}
+{% from '@Components/SocialShare/SocialShare.twig' import SocialShare %}
+
+{% block content %}
+  <div class="nextjswp-main-wrapper">
+    {{
+      Breadcrumbs({
+        items: breadcrumbs_items
+      })
+    }}
+  </div>
+  <article>
+    <div class="nextjswp-main-wrapper">
+      <h1>
+        {{ post.title }}
+      </h1>
+
+      {% if post.thumbnail %}
+        <div class="post__featured-image">
+          {{
+            Picture({
+              sources: [
+                {
+                  media: '(min-width: 1025px)',
+                  url: post.thumbnail.src('fullhd')
+                },
+                {
+                  media: '(min-width: 400px)',
+                  url: post.thumbnail.src('large')
+                },
+                {
+                  url: post.thumbnail.src('medium')
+                }
+              ],
+              width: post.thumbnail.width,
+              height: post.thumbnail.height,
+              alt: post.thumbnail
+            })
+          }}
+        </div>
+      {% endif %}
+
+      {{
+        PostMeta({
+          author: post.author,
+          date: post.date
+        })
+      }}
+    </div>
+    <div class="nextjswp-main-wrapper tight post__content">
+      {{ function('apply_filters', 'the_content', post.content) }}
+    </div>
+  </article>
+  <div class="nextjswp-main-wrapper">
+    {{
+      SocialShare({
+        link: post.link
+      })
+    }}
+  </div>
+{% endblock %}

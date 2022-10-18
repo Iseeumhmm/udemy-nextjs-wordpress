@@ -3,12 +3,12 @@
     "baseUrl": ".",
     // This is required for Autocompletion and Go To Definition features
     "paths": {
-      "@Blocks/*": ["./web/app/themes/%THEME_NAME%/Blocks/*"],
-      "@Components/*": ["./web/app/themes/%THEME_NAME%/Components/*"],
-      "@Templates/*": ["./web/app/themes/%THEME_NAME%/Templates/*"],
-      "@Utils/*": ["./web/app/themes/%THEME_NAME%/Utils/*"],
-      "@Assets/*": ["./web/app/themes/%THEME_NAME%/Assets/*"],
-      "@Vendors/*": ["./web/app/themes/%THEME_NAME%/Vendors/*"]
+      "@Blocks/*": ["./web/app/themes/NextJsWp/Blocks/*"],
+      "@Components/*": ["./web/app/themes/NextJsWp/Components/*"],
+      "@Templates/*": ["./web/app/themes/NextJsWp/Templates/*"],
+      "@Utils/*": ["./web/app/themes/NextJsWp/Utils/*"],
+      "@Assets/*": ["./web/app/themes/NextJsWp/Assets/*"],
+      "@Vendors/*": ["./web/app/themes/NextJsWp/Vendors/*"]
     }
   },
   "exclude": [".git", "**/node_modules/*", "./vendor", "./web/app/plugins", ".web/wp"]

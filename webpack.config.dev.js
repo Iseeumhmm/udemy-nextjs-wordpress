@@ -78,7 +78,7 @@ module.exports = (env, argv, process) => merge(common(env, argv, process), {
         key: path.join(__dirname, "../ssl/privkey.pem"),
       },
       // watch for changes in template files
-      files: ["./web/themes/%THEME_NAME%/"],
+      files: ["./web/themes/NextJsWp/"],
     }),
   ],
 });
