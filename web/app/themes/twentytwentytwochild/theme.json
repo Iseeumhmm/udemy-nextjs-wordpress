@@ -133,6 +133,11 @@
 					"slug": "tertiary",
 					"color": "#F6F6F6",
 					"name": "Tertiary"
+				},
+				{
+					"slug": "slate",
+					"color": "#1E293B",
+					"name": "Slate"
 				}
 			]
 		},
@@ -217,8 +222,8 @@
 			]
 		},
 		"layout": {
-			"contentSize": "650px",
-			"wideSize": "1000px"
+			"contentSize": "1200px",
+			"wideSize": "1200px"
 		}
 	},
 	"styles": {

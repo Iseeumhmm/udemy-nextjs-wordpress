@@ -63,7 +63,7 @@ aquarium:
     #  This variable defines the folder in S3 where the assets and db are
     #  stored.
     #  Below is an example, so remove this comment and get the correct variables from S3
-    # folder: sportsbetting-net-in-rebuild
+    #  folder: sportsbetting-net-in-rebuild
 
     # Aquarium Importing - File
     #  This variable defines the file name within the S3 folder above for the
@@ -89,3 +89,12 @@ pre-commit:
     - js
     - twig
     - path
+
+# Environment
+#  Contains the site specific environment variable overrides.
+environment:
+  variables:
+    # PHP_POST_MAX_SIZE - https://www.php.net/manual/en/ini.core.php#ini.post-max-size
+    PHP_POST_MAX_SIZE: "8M"
+    # PHP_UPLOAD_MAX_FILESIZE - https://www.php.net/manual/en/ini.core.php#ini.upload-max-filesize
+    PHP_UPLOAD_MAX_FILESIZE: "8M"
