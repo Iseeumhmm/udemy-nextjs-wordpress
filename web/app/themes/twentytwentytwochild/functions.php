@@ -10,6 +10,23 @@
  * @since Twenty Twenty-Two 1.0
  */
 
+function acf_init_block_types()
+{
+    if (function_exists(('acf_register_block_type'))) {
+        // register block types
+        acf_register_block_type(array(
+            'name'              => 'ctaButton',
+            'title'             => 'CTA Button',
+            'description'       => 'A call to action block',
+            'render_template'   => 'template-parts/blocks/ctaButton/ctaButton.php',
+            'category'          => 'design',
+            'icon'              => 'button',
+            'keywords'          => array('button', 'cta', 'call to action')
+        ));
+    }
+}
+add_action('acf/init', 'acf_init_block_types');
+
 if (function_exists('acf_add_options_page')) {
     acf_add_options_page([
         'page_title' => 'Main menu',
